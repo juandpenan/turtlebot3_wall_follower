@@ -1,0 +1,45 @@
+scan_filter_chain:
+
+# - name: Remove over 0.35 meters on the right
+#   type: laser_filters/LaserScanBoxFilter
+#   params:
+#     box_frame: base_footprint
+#     min_x: -3.5
+#     max_x: 3.5
+#     min_y: -3.5
+#     max_y: -0.35
+#     min_z: -0.1
+#     max_z: 0.1
+
+# - name: Remove over 0.35 meters on the left
+#   type: laser_filters/LaserScanBoxFilter
+#   params:
+#     box_frame: base_footprint
+#     min_x: -3.5
+#     max_x: 3.5
+#     min_y: 0.35
+#     max_y: 3.5
+#     min_z: -0.1
+#     max_z: 0.1
+
+- name: Remove all but 270 to 360 degree
+  type: laser_filters/LaserScanAngularBoundsFilter
+  params:
+    lower_angle: 4.71
+    upper_angle: 6.28
+
+# - name: exist_range_12_to_70_cm
+#   type: laser_filters/LaserScanRangeFilter
+#   params:
+#     lower_threshold: 0.12
+#     upper_threshold: 0.7
+
+# - name: exist_intensity_500_to_4000
+#   type: laser_filters/LaserScanIntensityFilter
+#   params:
+#     lower_threshold: 500
+#     upper_threshold: 4000
+#     disp_histogram: 0
+
+# - name: interpolation
+#   type: laser_filters/InterpolationFilter

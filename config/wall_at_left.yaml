@@ -1,0 +1,18 @@
+scan_filter_chain:
+
+
+- name: Remove all but from 0 to 90 degree
+  type: laser_filters/LaserScanAngularBoundsFilter
+  params:
+    lower_angle: 0
+    upper_angle: 1.57
+
+- name: exist_range_12cm_to_50cm
+  type: laser_filters/LaserScanRangeFilter
+  params:
+    lower_threshold: 0.10
+    upper_threshold: 0.5
+
+
+- name: interpolation
+  type: laser_filters/InterpolationFilter
