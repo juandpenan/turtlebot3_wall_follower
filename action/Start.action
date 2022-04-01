@@ -1,0 +1,8 @@
+#goal
+float64 distance_to_maitain
+---
+#result
+float64 overall_error
+---
+#feedback
+float64 current_distance

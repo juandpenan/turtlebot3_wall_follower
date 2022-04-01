@@ -8,12 +8,14 @@ def node_init():
         rospy.init_node("burger_controler")
         burger = controller.Burger()
  
-        burger.move_straight()
+        burger.find_a_wall()
+        burger.align_with_wall()
+        burger.follow_wall()
         
 
     except rospy.ROSInterruptException:
 
-        rospy.logerr("Something went wrongg")
+        rospy.logerr("Something went wrong")
 
 
 if __name__  == "__main__":
