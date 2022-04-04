@@ -8,9 +8,8 @@ def node_init():
         rospy.init_node("burger_controler")
         burger = controller.Burger()
  
-        burger.find_a_wall()
-        burger.align_with_wall()
         burger.follow_wall()
+
         
 
     except rospy.ROSInterruptException:

@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+from turtlebot3_wall_follower.server import BurgerServer
+import rospy
+
+
+def start_server():
+    try:
+        rospy.init_node("counter_server")
+        client = BurgerServer()
+        client.start()
+    except rospy.ROSInterruptException:
+        rospy.logerr("You pressed CTRL+C or something went wrong...")
+
+
+if __name__ == "__main__":
+    start_server()

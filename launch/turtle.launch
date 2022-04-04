@@ -1,5 +1,6 @@
 <launch> 
-    
+    <node pkg="turtlebot3_wall_follower" type="client" name="client" />
+    <node pkg="turtlebot3_wall_follower" type="server" name="server" />
     <node name="controller" pkg="pid" type="controller" ns="steering" output="screen" >
       <param name="node_name" value="steering_pid" />
       <param name="Kp" value="-2.5" />
@@ -14,6 +15,7 @@
       <param name="setpoint_timeout" value="-1.0" />
      </node>
      <node pkg="turtlebot3_wall_follower" type="controller" name="turtlebot3_node" ns="steering"/>
+     <!-- <node pkg="turtlebot3_wall_follower" type="server" name="turtlebot3_node" ns="steering"/> -->
      <node name="controller" pkg="pid" type="controller" ns="velocity" output="screen" >
       <param name="node_name" value="veolcity_pid" />
       <param name="Kp" value="-2" />
@@ -27,7 +29,8 @@
       <param name="min_loop_frequency" value="95.0" />
       <param name="setpoint_timeout" value="-1.0" />
      </node>
-     <node pkg="turtlebot3_wall_follower" type="controller" name="turtlebot3_node" ns="velocity"/>
+    <node pkg="turtlebot3_wall_follower" type="controller" name="turtlebot3_node" ns="velocity"/>
+    <!-- <node pkg="turtlebot3_wall_follower" type="server" name="turtlebot3_node" ns="velocity"/> -->
     <arg name="multi_robot_name" default=""/>
     <!-- Load Gazebo simulator -->
     <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch">

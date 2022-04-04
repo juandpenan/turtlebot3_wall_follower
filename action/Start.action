@@ -1,8 +1,9 @@
 #goal
-float64 distance_to_maitain
+float64 distance_to_follow
 ---
 #result
-float64 overall_error
+float64 average_error
 ---
 #feedback
 float64 current_distance
+float64 current_error
