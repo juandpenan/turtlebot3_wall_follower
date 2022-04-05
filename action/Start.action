@@ -1,5 +1,5 @@
 #goal
-float64 distance_to_follow
+float64 distance_to_wall
 ---
 #result
 float64 average_error

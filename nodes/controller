@@ -6,7 +6,7 @@ from turtlebot3_wall_follower import controller
 def node_init():
     try:
         rospy.init_node("burger_controler")
-        burger = controller.Burger()
+        burger = controller.Burger()        
  
         burger.follow_wall()
 

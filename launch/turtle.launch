@@ -1,47 +1,52 @@
 <launch> 
-    <node pkg="turtlebot3_wall_follower" type="client" name="client" />
+
+    <!-- ACTION LIB NODES -->
     <node pkg="turtlebot3_wall_follower" type="server" name="server" />
+
+    <!-- PID NODES -->
     <node name="controller" pkg="pid" type="controller" ns="steering" output="screen" >
-      <param name="node_name" value="steering_pid" />
-      <param name="Kp" value="-2.5" />
-      <param name="Ki" value="-0.1" />
-      <param name="Kd" value="-0.1" />
-      <param name="upper_limit" value="0.4" />
-      <param name="lower_limit" value="-0.4" />
-      <param name="windup_limit" value="10" />
-      <param name="cutoff_frequency" value="20" />
-      <param name="max_loop_frequency" value="105.0" />
-      <param name="min_loop_frequency" value="95.0" />
-      <param name="setpoint_timeout" value="-1.0" />
-     </node>
-     <node pkg="turtlebot3_wall_follower" type="controller" name="turtlebot3_node" ns="steering"/>
-     <!-- <node pkg="turtlebot3_wall_follower" type="server" name="turtlebot3_node" ns="steering"/> -->
-     <node name="controller" pkg="pid" type="controller" ns="velocity" output="screen" >
-      <param name="node_name" value="veolcity_pid" />
-      <param name="Kp" value="-2" />
-      <param name="Ki" value="-0.05" />
-      <param name="Kd" value="-0.1" />
-      <param name="upper_limit" value="0.15" />
-      <param name="lower_limit" value="-0.15" />
-      <param name="windup_limit" value="10" />
-      <param name="cutoff_frequency" value="20" />
-      <param name="max_loop_frequency" value="105.0" />
-      <param name="min_loop_frequency" value="95.0" />
-      <param name="setpoint_timeout" value="-1.0" />
-     </node>
+        <param name="node_name" value="steering_pid" />
+        <param name="Kp" value="-2.5" />
+        <param name="Ki" value="-0.1" />
+        <param name="Kd" value="-0.1" />
+        <param name="upper_limit" value="0.4" />
+        <param name="lower_limit" value="-0.4" />
+        <param name="windup_limit" value="10" />
+        <param name="cutoff_frequency" value="20" />
+        <param name="max_loop_frequency" value="105.0" />
+        <param name="min_loop_frequency" value="95.0" />
+        <param name="setpoint_timeout" value="-1.0" />
+    </node>
+    <node pkg="turtlebot3_wall_follower" type="controller" name="turtlebot3_node" ns="steering"/>
+    
+    <node name="controller" pkg="pid" type="controller" ns="velocity" output="screen" >
+        <param name="node_name" value="veolcity_pid" />
+        <param name="Kp" value="-2" />
+        <param name="Ki" value="-0.05" />
+        <param name="Kd" value="-0.1" />
+        <param name="upper_limit" value="0.15" />
+        <param name="lower_limit" value="-0.15" />
+        <param name="windup_limit" value="10" />
+        <param name="cutoff_frequency" value="20" />
+        <param name="max_loop_frequency" value="105.0" />
+        <param name="min_loop_frequency" value="95.0" />
+        <param name="setpoint_timeout" value="-1.0" />
+    </node>
     <node pkg="turtlebot3_wall_follower" type="controller" name="turtlebot3_node" ns="velocity"/>
-    <!-- <node pkg="turtlebot3_wall_follower" type="server" name="turtlebot3_node" ns="velocity"/> -->
-    <arg name="multi_robot_name" default=""/>
-    <!-- Load Gazebo simulator -->
+    
+    <!-- GAZEBO NODES -->
     <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_house.launch">
         <arg name="model" value="burger"/>
     </include>
-    <!-- robot state publisher -->
+
+    <!-- ROBOT STATE NODES -->
+    <arg name="multi_robot_name" default=""/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
         <param name="publish_frequency" type="double" value="50.0" />
         <param name="tf_prefix" value="$(arg multi_robot_name)"/>
     </node>
-    <!-- Filter laser data-->   
+
+    <!-- FILTERING NODES -->   
     <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
         <remap from="scan" to="/scan" />
         <rosparam command="load" file="$(find turtlebot3_wall_follower)/config/wall_at_left.yaml" />

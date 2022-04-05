@@ -6,7 +6,8 @@ from turtlebot3_wall_follower.msg import StartActionGoal
 
 class BurgerClient:
     def __init__(self):
-        # self.goal = None
+        
+        self.distance = rospy.get_param("distance")
         
         self.goal = rospy.wait_for_message('burger_commands/goal',StartActionGoal)
         self.action_client = actionlib.SimpleActionClient('burger_commands',StartAction)        
@@ -15,14 +16,15 @@ class BurgerClient:
 
     def send_goal_and_get_result(self):
 
-        # while not rospy.is_shutdown():
-        #     if self.goal.goal.distance_to_follow == None:
-        #         rospy.loginfo("client: please enter a distance.")
-        #     else:
-        #         self.action_client.send_goal(self.goal, done_cb=self.done_callback,
-        #             feedback_cb=self.feedback_callback)
-        #         rospy.loginfo("client: Goal has been sent.")
-        self.action_client.send_goal(self.goal, done_cb=self.done_callback,
+        goal = StartActionGoal()
+        if self.distance != "":
+            goal.distance_to_follow = self.distance
+            self.action_client.send_goal(goal, done_cb=self.done_callback,
+                                        feedback_cb=self.feedback_callback)
+            
+        else:
+            goal = self.goal
+            self.action_client.send_goal(goal, done_cb=self.done_callback,
                                         feedback_cb=self.feedback_callback)
         rospy.loginfo("client: Goal has been sent.")
 
@@ -35,8 +37,7 @@ class BurgerClient:
     def feedback_callback(self, feedback):
         rospy.loginfo(f"client: {feedback}")
     
-    # def goal_callback(self,data):
-    #     self.goal=data.goal
+
 
     def start(self):
         self.send_goal_and_get_result()
