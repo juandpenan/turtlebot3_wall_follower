@@ -7,7 +7,7 @@ scan_filter_chain:
     lower_angle: 0
     upper_angle: 1.57
 
-- name: exist_range_12cm_to_100cm
+- name: exist_range_10cm_to_100cm
   type: laser_filters/LaserScanRangeFilter
   params:
     lower_threshold: 0.10

@@ -38,7 +38,7 @@ class BurgerServer:
         is_on_signal = Bool()
 
         while not rospy.is_shutdown() and (not preempted):                
-            is_on_signal = True
+            is_on_signal.data = True
             self.publisher.publish(is_on_signal)
 
             if self.action_server.is_preempt_requested():

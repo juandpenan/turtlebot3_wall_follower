@@ -167,7 +167,6 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS  
   nodes/controller
-  nodes/client
   nodes/server  
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
@@ -198,6 +197,7 @@ install(FILES
 
   launch/turtle.launch
   config/wall_at_left.yaml
+  worlds/house_walls.world
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 

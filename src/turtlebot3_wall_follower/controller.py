@@ -97,7 +97,7 @@ class Burger:
         
 
     def on_signal_callback(self,data):
-        self.is_on_signal_value = data        
+        self.is_on_signal_value = data.data       
     def steering_callback(self,data):
         self.steering_value = data.data
     def velocity_callback(self,data):
