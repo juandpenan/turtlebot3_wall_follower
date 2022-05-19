@@ -13,12 +13,12 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   geometry_msgs
   nav_msgs
-  turtlebot3_gazebo
+  # turtlebot3_gazebo
   laser_filters
   tf
   actionlib
   actionlib_msgs
-)
+  )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -111,7 +111,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES turtlebot3_wall_follower
-CATKIN_DEPENDS actionlib actionlib_msgs rospy std_msgs sensor_msgs geometry_msgs nav_msgs tf
+CATKIN_DEPENDS actionlib actionlib_msgs rospy std_msgs sensor_msgs geometry_msgs nav_msgs tf 
 #  DEPENDS system_lib
 )
 

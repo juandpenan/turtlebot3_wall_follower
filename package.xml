@@ -64,7 +64,7 @@
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>laser_filters</exec_depend>
-  <exec_depend>turtlebot3_gazebo</exec_depend>
+  <!-- <exec_depend>turtlebot3_gazebo</exec_depend> -->
   <exec_depend>actionlib</exec_depend>
   <exec_depend>actionlib_msgs</exec_depend>
 

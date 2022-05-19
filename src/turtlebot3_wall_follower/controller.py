@@ -6,13 +6,16 @@ from geometry_msgs.msg import Twist
 from turtlebot3_wall_follower.msg import StartActionGoal
 from std_msgs.msg import Bool
 
+
 class Burger:
     
-    def __init__(self):              
-        
-        self.crash_distance = 0.6
+    def __init__(self):
+        full_param_name = rospy.search_param('autostart')
+        self.auto_start= rospy.get_param(full_param_name)              
+        # self.auto_start = rospy.get_param("autostart")
+        self.crash_distance = 0.25
         self.queue_size=10
-        #middle_distance = lidar info at 315ª see: https://emanual.robotis.com/docs/en/platform/turtlebot3/appendix_lds_01/
+        #middle_distance = lidar info at 315º see: https://emanual.robotis.com/docs/en/platform/turtlebot3/appendix_lds_01/
         self.middle_distance = 0
         self.front_distance = 0
         self.steering_value = 0
@@ -83,11 +86,12 @@ class Burger:
 
     
     def follow_wall(self):
-
-        while not self.is_on_signal_value:
+        
+        while not self.is_on_signal_value and not self.auto_start :
             rospy.logwarn("waiting for a goal")
+            rospy.sleep(4.)
 
-        if self.is_on_signal_value:            
+        if self.is_on_signal_value or self.auto_start:            
             self.find_a_wall()
             self.align_with_wall()
             self.keep_distance()
@@ -105,7 +109,7 @@ class Burger:
     def goal_callback(self,data):
         safe_distance = 0.6
         max_distance = 1.2
-        min_distance = 0.2
+        min_distance = 0.35
         if data.goal.distance_to_wall > max_distance or data.goal.distance_to_wall<= min_distance :
             self.goal_distance=safe_distance
             rospy.logwarn("invalid distance value, distance was set to %f"%(safe_distance))

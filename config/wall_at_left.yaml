@@ -7,12 +7,12 @@ scan_filter_chain:
     lower_angle: 0
     upper_angle: 1.57
 
-- name: exist_range_10cm_to_100cm
+- name: exist_range_5cm_to_100cm
   type: laser_filters/LaserScanRangeFilter
   params:
-    lower_threshold: 0.10
+    lower_threshold: 0.05
     upper_threshold: 1
 
 
-- name: interpolation
-  type: laser_filters/InterpolationFilter
+# - name: interpolation
+#   type: laser_filters/InterpolationFilter

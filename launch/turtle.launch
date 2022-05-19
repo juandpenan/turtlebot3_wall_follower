@@ -1,14 +1,21 @@
 <launch> 
 
+    <!-- ARGUMENTS -->
+    <arg name="autostart" default = "false"/> 
+    <arg name="is_robot_publisher_on" default = "true"/> 
+    <!-- PARAMS -->
+    <param name="autostart" value="$(arg autostart)"/>
+    <param name="is_robot_publisher_on" value="$(arg is_robot_publisher_on)"/> 
+
     <!-- ACTION LIB NODES -->
     <node pkg="turtlebot3_wall_follower" type="server" name="server" />
 
     <!-- PID NODES -->
     <node name="controller" pkg="pid" type="controller" ns="steering" output="screen" >
         <param name="node_name" value="steering_pid" />
-        <param name="Kp" value="-2.5" />
+        <param name="Kp" value="-6.5" />
         <param name="Ki" value="-0.1" />
-        <param name="Kd" value="-0.1" />
+        <param name="Kd" value="-2.8" />
         <param name="upper_limit" value="0.4" />
         <param name="lower_limit" value="-0.4" />
         <param name="windup_limit" value="10" />
@@ -21,9 +28,9 @@
     
     <node name="controller" pkg="pid" type="controller" ns="velocity" output="screen" >
         <param name="node_name" value="veolcity_pid" />
-        <param name="Kp" value="-2" />
-        <param name="Ki" value="-0.05" />
-        <param name="Kd" value="-0.1" />
+        <param name="Kp" value="-3.5" />
+        <param name="Ki" value="-0.01" />
+        <param name="Kd" value="-0.0" />
         <param name="upper_limit" value="0.15" />
         <param name="lower_limit" value="-0.15" />
         <param name="windup_limit" value="10" />
@@ -40,7 +47,7 @@
     <arg name="y_pos" default="1.0"/>
     <arg name="z_pos" default="0.0"/>
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find turtlebot3_wall_follower)/worlds/house_walls.world"/>
+        <arg name="world_name" value="$(find turtlebot3_wall_follower)/worlds/house_walls.world"/>
     </include>
     <param name="robot_description"
     command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
@@ -50,7 +57,8 @@
 
     <!-- ROBOT STATE NODES -->
     <arg name="multi_robot_name" default=""/>
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+             if="$(arg is_robot_publisher_on)">
         <param name="publish_frequency" type="double" value="50.0" />
         <param name="tf_prefix" value="$(arg multi_robot_name)"/>
     </node>
