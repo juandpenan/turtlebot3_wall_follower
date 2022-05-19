@@ -635,11 +635,11 @@
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
         <visual name='Wall_108_Visual_0'>
-          <pose>-0.856324 0 0.5 0 -0 0</pose>
+          <pose>-0.356324 0 0.5 0 -0 0</pose>
           <geometry>
             <box>
               <!-- <size>5.78735 0.15 1</size> -->
-              <size>7.58735 0.15 1</size>
+              <size>7.28735 0.15 1</size>
             </box>
           </geometry>
           <material>
@@ -656,10 +656,10 @@
           <transparency>0</transparency>
         </visual>
         <visual name='Wall_108_Visual_1'>
-          <pose>3.34368 0 0.5 0 -0 0</pose>
+          <pose>2.34368 0 0.5 0 -0 0</pose>
           <geometry>
             <box>
-              <size>0.812647 0.15 1</size>
+              <size>2.5 0.15 1</size>
             </box>
           </geometry>
           <material>
@@ -678,10 +678,10 @@
         <collision name='Wall_108_Collision_1'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>3.34368 0 0.5 0 -0 0</pose>
+          <pose>2.84368 0 0.5 0 -0 0</pose>
           <geometry>
             <box>
-              <size>0.812647 0.15 1</size>
+              <size>2.5 0.15 1</size>
             </box>
           </geometry>
           <surface>
@@ -733,10 +733,10 @@
         <collision name='Wall_108_Collision_0'>
           <laser_retro>0</laser_retro>
           <max_contacts>10</max_contacts>
-          <pose>-0.856324 0 0.5 0 -0 0</pose>
+          <pose>-0.356324 0 0.5 0 -0 0</pose>
           <geometry>
             <box>
-              <size>7.58735 0.15 1</size>
+              <size>7.28735 0.15 1</size>
             </box>
           </geometry>
           <surface>
@@ -788,14 +788,14 @@
         <enable_wind>0</enable_wind>
       </link>
       <link name='Wall_109'>
-        <pose>-1.37 3.0 0 0 -0 0</pose>
+        <pose>-2.12 3.0 0 0 -0 0</pose>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
         <visual name='Wall_109_Visual'>
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>2.5 0.15 2.5</size>
+              <size>4.0 0.15 2.5</size>
             </box>
           </geometry>
           <material>
@@ -817,7 +817,7 @@
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>2.5 0.15 2.5</size>
+              <size>4.0 0.15 2.5</size>
             </box>
           </geometry>
           <surface>
@@ -4495,7 +4495,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_109'>
-          <pose>-1.37 3.0 0 0 -0 0</pose>
+          <pose>-2.12 3.0 0 0 -0 0 3.0 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
